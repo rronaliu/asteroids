@@ -3,7 +3,13 @@ from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from logger import log_state
 from player import Player
 
+
 def main():
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = (updatable, drawable)
+
     pygame.init()
     clock = pygame.time.Clock()
     dt = 0
@@ -25,8 +31,8 @@ def main():
 
         # Draw the player
         dt = clock.tick(60) / 1000.0
-        player.update(dt)
-        player.draw(screen)
+        updatable.update(dt)
+        drawable.draw(screen)
         pygame.display.flip()
 
 if __name__ == "__main__":
